@@ -17,14 +17,14 @@ import NavItems from "@/components/NavItems";
 
 
 
-const UserDropdown = () => {
+const UserDropdown = ({user}:{user:User}) => {
     const router = useRouter();
 
     const handleSignOut = async () => {
         router.push("/sign-in");
     }
 
-    const user = {name:'jhon', email:'jhon@gmail.com'};
+    
 
     return (
         <DropdownMenu>

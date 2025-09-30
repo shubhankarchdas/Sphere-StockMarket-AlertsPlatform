@@ -4,11 +4,16 @@ import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
 import { INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS } from "@/lib/constants";
+import { sign } from "crypto";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
 
 
 
 const SignUp = () => {
+    const router = useRouter();
     const{
         register,
         handleSubmit,
@@ -29,10 +34,14 @@ const SignUp = () => {
 });
     const onSubmit = async (data:SignUpFormData) =>{
         try {
-            console.log(data);
+            const result = await signUpWithEmail(data);
+            if(result.success) router.push('/')
             
         } catch (error) {
             console.log(error);
+            toast.error('Sign Up failed. Please try again.',{
+                description: error instanceof Error ? error.message : 'Something went wrong'
+            });
         }
     }
 
@@ -53,14 +62,7 @@ const SignUp = () => {
             error={errors.fullName}
             validation = {{required: 'Full name is required', minLength:2}}
         />
-        <InputField 
-            name ='fullName'
-            label='Full Name'
-            placeholder="John Doe"
-            register={register}
-            error={errors.fullName}
-            validation = {{required: 'Full name is required', minLength:2}}
-        />
+     
         <InputField 
             name ='email'
             label='Email '
