@@ -14,7 +14,7 @@ const Layout = async ({children}:{children:React.ReactNode}) => {
         <main className="auth-layout">
           <section className="auth-left-section scrollbar-hide-default">
             <Link href="/" className="auth-logo">
-            <Image src="/assets/icons/logo.svg" alt="Sphere logo" width={140} height={32} className='h-8 w-auto'  />
+            <Image src="/assets/icons/logo.png" alt="Sphere logo" width={140} height={32} className='h-8 w-auto'  />
             </Link>
 
             <div className="pb-6 lg:pb-8 flex-1">
@@ -32,7 +32,7 @@ const Layout = async ({children}:{children:React.ReactNode}) => {
 
                     <div className="flex items-center justify-between">
                         <div className="">
-                        <cite className="auth-testimonial-author">- Ethan R.</cite>
+                        <cite className="auth-testimonial-author">- Mr. Shubhankar Ch das</cite>
                         <p className="max-md:text-xs text-gray-500">Retail Investor</p>
                         </div>
                     <div className="flex items-center gap-0.5">
