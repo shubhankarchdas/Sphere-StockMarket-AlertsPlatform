@@ -77,7 +77,7 @@ Make sure you have:
 ### 1. Clone the Repo  
 
 ```bash
-git clone https://github.com/your-username/sphere.git
+git clone https://github.com/shubhankarchdas/Sphere-StockMarket-AlertsPlatform.git
 cd sphere
 
 ```
