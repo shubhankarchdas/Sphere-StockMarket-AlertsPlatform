@@ -1,7 +1,8 @@
 # 🌐 Sphere – AI Powered Stock Market & Alerts Platform  
+## 🔗 [Live Demo](https://sphere-stock-market-platform.vercel.app) /Click The Banner Img
 
 <div align="center">  
-  <a href="https://youtu.be/gu4pafNCXng" target="_blank">  
+  <a href="https://sphere-stock-market-platform.vercel.app" target="_blank">  
     <img src="public/assets/images/dashboard_preview.png" alt="Sphere Banner" />  
   </a>  
 </div>  
