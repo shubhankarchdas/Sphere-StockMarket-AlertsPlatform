@@ -1,12 +1,11 @@
 import { inngest } from "@/lib/inngest/client";
-import { PERSONALIZED_WELCOME_EMAIL_PROMPT } from "./prompts";
-import { success } from "better-auth";
-import { sendWelcomeEmail } from "../nodemailer";
+import { PERSONALIZED_WELCOME_EMAIL_PROMPT } from "@/lib/inngest/prompts";
+import { sendWelcomeEmail } from "@/lib/nodemailer";
 
 
 export const sendSignUpEmail = inngest.createFunction(
     {id: 'sign-up-email'},
-    {event:'app/user.creted'},
+    {event:'app/user.created'},
     async({event,step})=>{
         const userProfile = `
               - country: ${event.data.country}
@@ -18,19 +17,16 @@ export const sendSignUpEmail = inngest.createFunction(
         const prompt = PERSONALIZED_WELCOME_EMAIL_PROMPT.replace('{{userProfile}}',userProfile);
 
         const response = await step.ai.infer('generate-welcome-intro', {
-            model: step.ai.models({model:'gemini-2.5-flash-lite'}),
-                body: {
-                    contents: [
-                        {
-                            role:'user',
-                            parts:[
-                                {text:prompt}
-                            ]
-                        
-                        }]
-                
-                    }
-            
+        model: step.ai.models.gemini({ model: 'gemini-2.5-flash-lite' }),
+        body: {
+        contents: [
+            {
+                role: 'user',
+                parts: [
+                    { text: prompt }
+                ]
+            }]
+        }
         })
 
         await step.run('send-welcome-email',async()=>{
@@ -40,7 +36,7 @@ export const sendSignUpEmail = inngest.createFunction(
 
             const {data:{email, name}} = event;
             return await sendWelcomeEmail({
-                email,name,introText
+                email,name,intro:introText
             })
 
         })
